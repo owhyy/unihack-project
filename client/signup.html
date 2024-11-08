@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp Page</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="images/logo.png" alt="CO₂ Logo">
+        </div>
+        <h2>CREATE YOUR ACCOUNT</h2>
+        <p class="description">Create your account. It takes less than a minute. Enter your email, password and car information</p>
+        <form action="/login" method="post">
+            <input type="email" name="email" placeholder="EMAIL" required>
+            <input type="password" name="password" placeholder="PASSWORD" required>
+            <p class="car-info">CAR INFO</p>
+            <input type="text" name="fuel-economy" placeholder="FUEL ECONOMY" required>
+            <select id="type-of-fuel" name="type-of-fuel" required>
+                <option value="" disabled selected>SELECT FUEL TYPE</option>
+                <option value="petrol">Petrol</option>
+                <option value="diesel">Diesel</option>
+            </select>
+            <a class="signup-btn">SIGN UP</a>
+            <p>Already got an account?</p>
+            <button type="submit" class="login-btn" onclick="window.location.href='login.html';">LOG IN</button>
+        </form>
+    </div>
+</body>
+</html>
