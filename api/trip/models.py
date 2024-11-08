@@ -1,4 +1,6 @@
-from django.db import models
+from carbon.models import BaseModel
+
+from django.contrib.gis.db import models
 from django.contrib.auth.models import AbstractUser
 
 
@@ -14,4 +16,11 @@ class CustomUser(AbstractUser):
     
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
+    
+
+class Trip(BaseModel):
+    origin = models.PointField()
+    destination = models.PointField()
+    
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     
