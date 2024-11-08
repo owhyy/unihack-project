@@ -1,3 +1,4 @@
+from django.contrib.auth import authenticate, login
 from rest_framework.generics import CreateAPIView
 from rest_framework import serializers, status
 from rest_framework.views import Response
@@ -31,3 +32,34 @@ class RegisterUserView(CreateAPIView):
         return Response(
             serializer.data, status=status.HTTP_201_CREATED, headers=headers
         )
+
+
+class LoginUserView(CreateAPIView):
+    class LoginSerializer(serializers.Serializer):
+        email = serializers.EmailField()
+        password = serializers.CharField()
+
+        class Meta:
+            fields = [
+                "email",
+                "password",
+            ]
+
+    serializer_class = LoginSerializer
+
+    def create(self, request):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        user = authenticate(
+            request,
+            username=serializer.validated_data["email"],
+            password=serializer.validated_data["password"],
+        )
+
+        if user is None:
+            return Response(
+                {"detail": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST
+            )
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
