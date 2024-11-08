@@ -1,10 +1,11 @@
 from django.contrib.auth import authenticate, login
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import serializers, status
 from rest_framework.views import Response
 
 from trip.service import create_user
-from trip.models import CustomUser
+from trip.models import CustomUser, Trip
 
 
 class RegisterUserView(CreateAPIView):
@@ -62,4 +63,20 @@ class LoginUserView(CreateAPIView):
                 {"detail": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST
             )
 
+        login(request, user)
+
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class TripListView(ListAPIView):
+    class TripListSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = Trip
+            fields = ["origin", "destination"]
+
+    queryset = Trip.objects.all()
+    serializer_class = TripListSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user)
