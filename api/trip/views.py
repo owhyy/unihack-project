@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, login
-from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import serializers, status
 from rest_framework.views import Response
@@ -8,7 +8,7 @@ from trip.service import create_user
 from trip.models import CustomUser, Trip
 
 
-class RegisterUserView(CreateAPIView):
+class UserRegisterView(CreateAPIView):
     class UserSerializer(serializers.ModelSerializer):
         class Meta:
             model = CustomUser
@@ -35,7 +35,7 @@ class RegisterUserView(CreateAPIView):
         )
 
 
-class LoginUserView(CreateAPIView):
+class UserLoginView(CreateAPIView):
     class LoginSerializer(serializers.Serializer):
         email = serializers.EmailField()
         password = serializers.CharField()
