@@ -1,3 +1,8 @@
 from django.contrib import admin
+from django.contrib.gis.admin import GISModelAdmin
+from trip.models import Trip
 
-# Register your models here.
+
+@admin.register(Trip)
+class TripAdmin(GISModelAdmin):
+    list_display = ("origin", "destination")

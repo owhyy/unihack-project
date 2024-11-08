@@ -1,5 +1,5 @@
 from django.contrib.auth.models import make_password
-from trip.models import CustomUser
+from trip.models import CustomUser, Trip
 
 
 def create_user(
@@ -23,3 +23,7 @@ def create_user(
     user.password = make_password(password)
     user.save()
     return user
+
+
+def create_trip(user: CustomUser, **kwargs):
+    Trip.objects.create(user=user, **kwargs)
