@@ -25,7 +25,7 @@ body {
 }
 
 .logo img {
-    width: 40px; /* Adjust width as needed */
+    width: 60px; /* Adjust width as needed */
     height: auto;
 }
 
@@ -61,7 +61,7 @@ input[type="email"], input[type="password"] {
     height: 3.5em;
 }
 
-.login-btn, .signup-btn {
+.login-btn {
     padding: .8em;
     width: 15em;
     background-color: #4e4e4e;
@@ -74,20 +74,23 @@ input[type="email"], input[type="password"] {
     font-weight: bold;
     height: 3em;
 }
+.signup-btn {
+    margin: 15px;
+    font-family: "Roboto Condensed";
+    font-weight: 200;
+    font-size: 1em;
+}
 
 .login-btn{
     margin-top: 20px;
-}
-.signup-btn {
+    width: 100%;
+    height: 3.5em;
     background-color: #e53935;
 }
 
-.signup-btn:hover {
-    background-color: #d32f2f;
-}
 
 .login-btn:hover {
-    background-color: #3b3b3b;
+    background-color: #d32f2f;
 }
 
 p {
@@ -97,3 +100,11 @@ p {
     font-weight: 250;
     font-size: 1em;
 }
+
+.register-link {
+    font-family: "Roboto Condensed";
+    color:#e53935;
+    text-decoration: none; /* Remove default underline */
+    border-bottom: 2px solid #e53935; /* Add a custom underline */
+    padding-bottom: 2px; /* Optional: adds spacing between text and underline */
+  }
