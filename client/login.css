@@ -8,8 +8,8 @@
 body {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    align-items: flex-start;  /* Keeps the content at the top */
+    min-height: 100vh;
     background-color: #ffffff;
 }
 
@@ -18,15 +18,15 @@ body {
     width: 300px;
 }
 
-.logo h1 {
-    font-size: 3rem;
-    color: #e53935;
+.logo {
+    text-align: left; /* Align logo to the left */
+    margin-bottom: 100px;
+    margin-top: 30px;
 }
 
-.fire-icon {
-    color: #ff6f00;
-    font-size: 1.5rem;
-    vertical-align: top;
+.logo img {
+    width: 40px; /* Adjust width as needed */
+    height: auto;
 }
 
 h2 {
@@ -48,7 +48,7 @@ form {
     align-items: center;
 }
 
-input[type="email"]{
+input[type="email"], input[type="password"] {
     font-weight: 300;
     font-family: "Roboto Condensed";
     width: 100%;
@@ -59,27 +59,10 @@ input[type="email"]{
     font-size: 0.8rem;
     color: #8d6e63;
     height: 3.5em;
-    
 }
 
-
-input[type="password"] {
-    font-weight: 300;
-    font-family: "Roboto Condensed";
-    width: 100%;
-    padding: 10px;
-    margin: 5px;
-    border: 1px solid #d3d3d3;
-    border-radius: 5px;
-    font-size: 0.8rem;
-    color: #8d6e63;
-    height: 3.5em;
-    margin-bottom: 1.5em;
-    
-}
-
-.login-btn {
-    padding: .5em;
+.login-btn, .signup-btn {
+    padding: .8em;
     width: 15em;
     background-color: #4e4e4e;
     color: #ffffff;
@@ -87,10 +70,20 @@ input[type="password"] {
     border: none;
     border-radius: 50px;
     cursor: pointer;
-    margin-top: 10px;
     font-family: "Roboto";
     font-weight: bold;
     height: 3em;
+}
+
+.login-btn{
+    margin-top: 20px;
+}
+.signup-btn {
+    background-color: #e53935;
+}
+
+.signup-btn:hover {
+    background-color: #d32f2f;
 }
 
 .login-btn:hover {
@@ -103,46 +96,4 @@ p {
     font-family: "Roboto Condensed";
     font-weight: 250;
     font-size: 1em;
-}
-
-.signup-btn {
-    padding: .8em;
-    width: 15em;
-    background-color: #4e4e4e;
-    color: #ffffff;
-    font-size: 1rem;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    font-family: "Roboto";
-    font-weight: bold;
-    background-color: #e53935;
-    height: 3em;
-}
-
-.signup-btn:hover {
-    background-color: #d32f2f;
-}
-
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #ffffff;
-}
-
-.container {
-    text-align: center;
-    width: 300px;
-}
-
-.logo {
-    text-align: left; /* Align logo to the left */
-    margin-bottom: 20px;
-}
-
-.logo img {
-    width: 60px; /* Adjust width as needed */
-    height: auto;
 }
