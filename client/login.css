@@ -30,13 +30,14 @@ body {
 }
 
 h2 {
-    font-family: Roboto;
+    font-family: "Roboto Condensed";
     font-size: 2.5rem;
-    font-weight: bold;
+    font-weight: 900;
     color: #000;
     margin: 20px 0;
     width: 250px;
     text-align: left;
+    letter-spacing: .01em;
 }
 
 form {
