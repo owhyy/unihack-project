@@ -1,10 +1,9 @@
 /* 1. Use a more-intuitive box-sizing model */
 
 :root {
-    --bg-color: #FFBD94;
-    --accent-color: #FF5100;
-    --text-color-white: #fff; 
-    --text-color-dark: #A45A29;
+    --bg-color: #000000;
+    --accent-color: #e3250b;
+    --text-color: #c0b8b1;
     --ff-base: 'K2D', sans-serif, Arial, Helvetica, sans-serif;
 }
 *, *::before, *::after {
@@ -60,7 +59,7 @@
   body{
     height: 100%;
     background-color: var(--bg-color);
-    color: var(--accent-color);
+    color: var(--text-color);
     font-family: var(--ff-base);
     
   }
