@@ -1,14 +1,14 @@
 from django.contrib.auth import authenticate, login
-from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import serializers, status
 from rest_framework.views import Response
 
-from trip.service import create_user
+from trip.service import create_trip, create_user
 from trip.models import CustomUser, Trip
 
 
-class RegisterUserView(CreateAPIView):
+class UserRegisterView(CreateAPIView):
     class UserSerializer(serializers.ModelSerializer):
         class Meta:
             model = CustomUser
@@ -23,19 +23,11 @@ class RegisterUserView(CreateAPIView):
 
     serializer_class = UserSerializer
 
-    def create(self, request):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-
+    def perform_create(self, serializer):
         create_user(**serializer.validated_data)
 
-        headers = self.get_success_headers(serializer.data)
-        return Response(
-            serializer.data, status=status.HTTP_201_CREATED, headers=headers
-        )
 
-
-class LoginUserView(CreateAPIView):
+class UserLoginView(CreateAPIView):
     class LoginSerializer(serializers.Serializer):
         email = serializers.EmailField()
         password = serializers.CharField()
@@ -77,6 +69,22 @@ class TripListView(ListAPIView):
     queryset = Trip.objects.all()
     serializer_class = TripListSerializer
     permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user)
+
+
+class TripCreateView(CreateAPIView):
+    class CreateTripSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = Trip
+            fields = ["origin", "destination"]
+
+    serializer_class = CreateTripSerializer
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        create_trip(user=self.request.user, **serializer.validated_data)
 
     def get_queryset(self):
         return super().get_queryset().filter(user=self.request.user)
