@@ -1,3 +1,33 @@
-from django.shortcuts import render
+from rest_framework.generics import CreateAPIView
+from rest_framework import serializers, status
+from rest_framework.views import Response
 
-# Create your views here.
+from trip.service import create_user
+from trip.models import CustomUser
+
+
+class RegisterUserView(CreateAPIView):
+    class UserSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = CustomUser
+            fields = [
+                "email",
+                "password",
+                "first_name",
+                "last_name",
+                "avg_fuel_consumption",
+                "fuel_type",
+            ]
+
+    serializer_class = UserSerializer
+
+    def create(self, request):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        create_user(**serializer.validated_data)
+
+        headers = self.get_success_headers(serializer.data)
+        return Response(
+            serializer.data, status=status.HTTP_201_CREATED, headers=headers
+        )

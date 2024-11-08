@@ -13,14 +13,13 @@ class CustomUser(AbstractUser):
     username = ""
     avg_fuel_consumption = models.PositiveIntegerField()
     fuel_type = models.CharField(choices=FuelType.choices)
-    
+
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
-    
+
 
 class Trip(BaseModel):
     origin = models.PointField()
     destination = models.PointField()
-    
+
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    
