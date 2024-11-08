@@ -58,16 +58,17 @@ input[type="password"] {
 }
 
 .login-btn {
-    width: 100%;
-    padding: 10px;
+    padding: .5em;
+    width: 15em;
     background-color: #4e4e4e;
     color: #ffffff;
     font-size: 1rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 50px;
     cursor: pointer;
     margin-top: 10px;
-    border-radius: 50px;
+    font-family: "Roboto";
+    font-weight: bold;
 }
 
 .login-btn:hover {
@@ -80,17 +81,18 @@ p {
 }
 
 .signup-btn {
-    display: inline-block;
-    padding: 10px;
-    width: 100%;
-    text-align: center;
+    padding: .5em;
+    width: 15em;
+    background-color: #4e4e4e;
     color: #ffffff;
-    background-color: #e53935;
     font-size: 1rem;
-    border-radius: 5px;
-    text-decoration: none;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-family: "Roboto";
     font-weight: bold;
-    border-radius: 30px;
+    background-color: #e53935;
 }
 
 .signup-btn:hover {
