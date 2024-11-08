@@ -43,6 +43,12 @@
     font-weight: bold;
     cursor: pointer;
 }
+.btn:hover {
+    background-color: #d32f2f;
+}
+.btn-black:hover {
+    background-color: #3b3b3b;
+}
 
 .btn-black {
     background-color: var(--accent-color-dark);
