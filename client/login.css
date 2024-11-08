@@ -46,15 +46,34 @@ form {
     align-items: center;
 }
 
-input[type="email"],
-input[type="password"] {
+input[type="email"]{
+    font-weight: 300;
+    font-family: "Roboto Condensed";
     width: 100%;
     padding: 10px;
-    margin: 10px 0;
+    margin: 5px;
     border: 1px solid #d3d3d3;
     border-radius: 5px;
-    font-size: 1rem;
+    font-size: 0.8rem;
     color: #8d6e63;
+    height: 3.5em;
+    
+}
+
+
+input[type="password"] {
+    font-weight: 300;
+    font-family: "Roboto Condensed";
+    width: 100%;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    color: #8d6e63;
+    height: 3.5em;
+    margin-bottom: 1.5em;
+    
 }
 
 .login-btn {
@@ -69,6 +88,7 @@ input[type="password"] {
     margin-top: 10px;
     font-family: "Roboto";
     font-weight: bold;
+    height: 3em;
 }
 
 .login-btn:hover {
@@ -76,12 +96,15 @@ input[type="password"] {
 }
 
 p {
-    margin: 15px 0;
+    margin: 15px;
     color: #888888;
+    font-family: "Roboto Condensed";
+    font-weight: 250;
+    font-size: 1em;
 }
 
 .signup-btn {
-    padding: .5em;
+    padding: .8em;
     width: 15em;
     background-color: #4e4e4e;
     color: #ffffff;
@@ -89,10 +112,10 @@ p {
     border: none;
     border-radius: 50px;
     cursor: pointer;
-    margin-top: 10px;
     font-family: "Roboto";
     font-weight: bold;
     background-color: #e53935;
+    height: 3em;
 }
 
 .signup-btn:hover {
