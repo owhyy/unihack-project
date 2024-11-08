@@ -1,4 +1,12 @@
 /* 1. Use a more-intuitive box-sizing model */
+
+:root {
+    --bg-color: #FFBD94;
+    --accent-color: #FF5100;
+    --text-color-white: #fff; 
+    --text-color-dark: #A45A29;
+    --ff-base: 'K2D', sans-serif, Arial, Helvetica, sans-serif;
+}
 *, *::before, *::after {
     box-sizing: border-box;
   }
@@ -45,3 +53,15 @@
   #root, #__next {
     isolation: isolate;
   }
+  html {
+    height: 100%;
+  }
+
+  body{
+    height: 100%;
+    background-color: var(--bg-color);
+    color: var(--accent-color);
+    font-family: var(--ff-base);
+    
+  }
+  
