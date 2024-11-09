@@ -26,7 +26,7 @@
         <div class="watch">
             <div id="display">00:00:00</div>
         </div>
-        <button class="stop-btn" onclick="stopStopwatch()">STOP TRIP</button>
+        <button class="stop-btn" onclick="onStopwatchClick()">STOP TRIP</button>
     </div>
 
     <div class="content">
@@ -52,5 +52,13 @@
     </div>
 
     <script src="drive.js"></script>
+    <script src="script.js"></script>
+    <script>
+      async function onStopwatchClick() {
+	  await stopStopwatch();
+	  navigator.geolocation.getCurrentPosition(async (p) => await post('trips/stop', {longitude: p.coords.longitude, latitude: p.coords.latitude}));
+      }
+    </script>
 </body>
 </html>
+
