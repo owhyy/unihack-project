@@ -19,7 +19,9 @@ class CustomUser(AbstractUser):
 
 
 class Trip(BaseModel):
-    origin = models.PointField()
-    destination = models.PointField()
+    origin = models.PointField(blank=True)
+    destination = models.PointField(blank=True)
+
+    stopped_at = models.DateTimeField(null=True)
 
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
