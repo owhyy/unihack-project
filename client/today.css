@@ -6,8 +6,8 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #000; /* Black background */
-    color: #fff; /* White text color */
+    background-color: #000;
+    color: #fff;
 }
 
 .top-bar {
@@ -34,22 +34,25 @@ body {
 }
 
 .profile-icon {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
 }
 
 .navigation-bar {
     display: flex;
-    border-radius: 30px;
     justify-content: space-around;
-    margin-top: 20px;
+    align-items: center;
+    margin-top: 10px;
     width: 90%;
-    background-color: #222; /* Dark background bar */
+    background-color: #ffffff;
+    margin: 0 auto;
+    border-radius: 30px;
+    height: 100%;
 }
 
 .nav-link {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 700;
     color: #fff;
     text-decoration: none;
@@ -57,19 +60,119 @@ body {
     width: 100%;
     text-align: center;
     position: relative;
+    z-index: 1;
 }
 
 .nav-link.active::after {
     content: "";
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
     right: 0;
+    bottom: 0;
     border-radius: 30px;
-    height: 100%;
-    background-color: #FF4500; /* Red underline */
+    background-color: #930000;
+    z-index: -1;
 }
 
 .nav-link:hover {
-    background-color: #333; /* Slightly lighter hover color */
+    background-color: #333;
 }
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.left-box {
+    margin-top: 20px;
+    background-color: #930000;
+    color: #ffffff;
+    width: 48%;
+    height: 210px;
+    padding: 95px 20px 20px 20px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    position: relative;
+    text-align: center;
+    font-family: 'Russo One', sans-serif;
+}
+
+.left-box-icon {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 90px;
+}
+
+.right-boxes {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+    font-family: 'Russo One', sans-serif;
+}
+
+.right-box.grey .small-text {
+    font-size: 10px;
+}
+
+.right-box.orange .small-text {
+    font-size: 10px;
+}
+
+.right-box {
+    border-radius: 20px;
+    color: #000;
+    height: 98px;
+    margin-bottom: 10px;
+    padding-left: 32px;
+    padding-top: 24px;
+    box-sizing: border-box;
+    position: relative;
+    
+}
+
+.right-box.orange {
+    background-color: #FFA500;
+}
+
+.right-box.grey {
+    background-color: #D3D3D3;
+}
+
+.box-icon {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 70px;
+    height: 70px;
+}
+
+.right-box p {
+    margin-left: 45px;
+    font-size: 18px;
+    word-wrap: break-word; /* Ensures text stays within the box */
+    flex-grow: 1; /* Allows text to take available space */
+    text-align: left; /* Align text to the left for consistency */
+    font-weight: 700;
+    line-height: 1.2; /* Prevents text from becoming too cramped */
+}
+
+.left-box p {
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.left-box .small-text {
+    font-size: 14px;
+    margin-top: 10px;
+    font-weight: normal;
+}
+
