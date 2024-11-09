@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="icon" href="images/favicon.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,8 +45,8 @@
             </div>
         </div>
     </div>
-    <div class="diagram-box">
-        
+    <div class="chart-container" style="width: 80%; margin: 20px auto;">
+        <canvas id="timeChart"></canvas>
     </div>
 
     <div class="news-box">
@@ -80,4 +81,70 @@
             link.classList.add('active');
         });
     });
+
+    const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'CO2 Emissions per Month',
+            data: [65, 59, 80, 81, 56, 55, 40],
+            backgroundColor: [
+                'rgba(147, 0, 0, 1)',   
+                'rgba(147, 0, 0, 1)',  
+                'rgba(147, 0, 0, 1)', 
+                'rgba(147, 0, 0, 1)', 
+                'rgba(147, 0, 0, 1)', 
+                'rgba(147, 0, 0, 1)',
+                'rgba(147, 0, 0, 1)' 
+            ]   
+        }]
+    };
+
+const config = {
+    type: 'bar',
+    data: data,
+    options: {
+        responsive: true, 
+        maintainAspectRatio: false, 
+        scales: {
+            x: {
+                grid: {
+                    display: false 
+                },
+                ticks: {
+                    color: '#fff' 
+                }
+            },
+            y: {
+                beginAtZero: true,
+                grid: {
+                    color: '#ddd' 
+                },
+                ticks: {
+                    color: '#fff' 
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                labels: {
+                    color: '#fff' 
+                }
+            },
+            tooltip: {
+                backgroundColor: '#333', 
+                titleColor: '#fff', 
+                bodyColor: '#fff', 
+                borderColor: '#930000', 
+                borderWidth: 1 
+            }
+        }
+    }
+};
+
+
+const ctx = document.getElementById('timeChart').getContext('2d');
+new Chart(ctx, config);
+    
 </script>
