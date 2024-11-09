@@ -1,4 +1,4 @@
-const api = "https://faithful-primate-divine.ngrok-free.app"
+const api = "https://faithful-primate-divine.ngrok-free.app";
 
 async function post(endpoint, data) {
     return await fetch(`${api}/${endpoint}`, {

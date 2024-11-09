@@ -18,12 +18,13 @@
             <img src="images/circle-logo.png" alt="CO₂ Logo">
         </div>
         <h2>LOG INTO YOUR ACCOUNT</h2>
-        <form @submit.prevent="login">
+        <form @submit.prevent="login" @focusin="errorText=''">
             <input x-model='email' type="email" name="email" placeholder="EMAIL" required>
             <input x-model='password' type="password" name="password" placeholder="PASSWORD" required>
+	    <p class="error-text" x-show="errorText" x-text="errorText"></p>
             <button type="submit" class="login-btn" >LOG IN</button>
             <p>Don't have an account? <a href="signup.html" class="register-link">Register here</a></p>
-	    <p x-show="errorText" x-text="errorText"></p>
+
         </form>
     </div>
 </body>

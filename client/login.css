@@ -93,6 +93,11 @@ input[type="email"], input[type="password"] {
     background-color: #d32f2f;
 }
 
+.error-text {
+    color: #e53935;
+  }
+
+
 p {
     margin: 15px;
     color: #888888;
