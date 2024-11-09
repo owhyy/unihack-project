@@ -31,7 +31,7 @@ function startStopwatch() {
 }
 
 let time = document.getElementById("total-time");
-function stopStopwatch() {
+async function stopStopwatch() {
   clearInterval(timerInterval);
   timerInterval = null;
   document.getElementById('display').textContent = "00:00:00"
