@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #000; /* Black background */
+    color: #fff; /* White text color */
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.title-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.title-container h1 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.underline {
+    width: 50%;
+    border: 2px solid #fff;
+    margin-top: 5px;
+}
+
+.profile-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
