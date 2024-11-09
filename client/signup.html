@@ -64,7 +64,7 @@
 		  });
 
 		  if (result.ok) {
-		      window.href.location = "login.html";
+		      window.location.href = "login.html";
 		  } else {
 		      const err = await result.json();
 		      if ('detail' in err) {
