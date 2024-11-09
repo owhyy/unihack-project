@@ -34,8 +34,9 @@ let time = document.getElementById("total-time");
 function stopStopwatch() {
   clearInterval(timerInterval);
   timerInterval = null;
+  document.getElementById('display').textContent = "00:00:00"
   totalTime = hours * 3600 + minutes * 60 + seconds;
-  time.innerText = totalTime;
+  time.innerText = totalTime + " seconds";
 }
 
 // Start the stopwatch automatically when the page loads
