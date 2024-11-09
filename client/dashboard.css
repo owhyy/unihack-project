@@ -77,9 +77,6 @@ body {
     z-index: -1;
 }
 
-.nav-link:hover {
-    background-color: #333;
-}
 
 .content {
     display: flex;
