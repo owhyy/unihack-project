@@ -54,7 +54,7 @@ body {
 }
 
 .nav-link {
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 700;
     color: #fff;
     text-decoration: none;
@@ -211,6 +211,7 @@ body {
     height: 200px;
     margin: 20px auto;
     margin-top: 5px;
+    margin-bottom: 20px;
     border-radius: 20px;
     display: flex;
     align-items: center;
@@ -228,7 +229,7 @@ body {
 .news-left h2 {
     font-family: 'Russo One', sans-serif;
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 800;
     margin-bottom: 10px;
     color: #000;
     width: 120px;
@@ -241,6 +242,7 @@ body {
     border: none;
     border-radius: 20px;
     font-size: 10px;
+    font-weight: 600;
     font-family: "Roboto";
     cursor: pointer;
     width: 100px;
@@ -261,5 +263,29 @@ body {
     width: auto;
     object-fit: contain;
 }
+
+.start-trip {
+    width: 90%;  /* Same width as the navigation bar */
+    height: 50px; /* Same height as the navigation bar */
+    margin: 20px auto;
+    margin-top: 0px; /* Center it and add some spacing from the content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    background-color: #930000; 
+    margin-bottom: 40px;/* Same background as the navigation bar */
+}
+
+.start-button {
+    padding: 10px 20px;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    font-size: 18px;
+    cursor: pointer;
+    font-family: 'Russo One', sans-serif;
+}
+
 
 
