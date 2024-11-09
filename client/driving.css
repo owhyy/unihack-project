@@ -1,0 +1,231 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.watch-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.watch {
+    padding: 50px 250px;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-direction: column;
+    background-color: #DDFFFD;
+    border-radius: 20px;
+    font-size:5em;
+}
+#display {
+    color: #000;
+    font-family: "Rubik", sans-serif;
+    font-weight: bold;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #000;
+    color: #fff;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.title-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.title-container h1 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.underline {
+    width: 50%;
+    border: 2px solid #fff;
+    margin-top: 5px;
+}
+
+.profile-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.navigation-bar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10px;
+    width: 90%;
+    background-color: #ffffff;
+    margin: 0 auto;
+    border-radius: 30px;
+    height: 100%;
+}
+
+.nav-link {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    padding: 15px 0;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.nav-link.active::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 30px;
+    background-color: #930000;
+    z-index: -1;
+}
+
+.nav-link:hover {
+    background-color: #333;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.left-box {
+    margin-top: 20px;
+    background-color: #E3250B;
+    color: #ffffff;
+    width: 48%;
+    height: 210px;
+    padding: 95px 20px 20px 20px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    position: relative;
+    text-align: center;
+    font-family: 'Russo One', sans-serif;
+}
+
+.left-box-icon {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 90px;
+}
+
+.right-boxes {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+    font-family: 'Russo One', sans-serif;
+}
+
+.right-box.grey .small-text {
+    font-size: 10px;
+}
+
+.right-box.orange .small-text {
+    font-size: 10px;
+}
+
+.right-box {
+    border-radius: 20px;
+    color: #000;
+    height: 98px;
+    margin-bottom: 10px;
+    padding-left: 32px;
+    padding-top: 30px;
+    box-sizing: border-box;
+    position: relative;
+    
+}
+
+.right-box.orange {
+    background-color: #FFA500;
+}
+
+.right-box.grey {
+    background-color: #D3D3D3;
+}
+
+.trip-box-icon {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    padding-left: 20px;
+    width: 60px;
+    height: 40px;
+}
+.km-box-icon {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    padding-left: 15px;
+    width: 70px;
+    height: 70px;
+}
+
+
+.right-box p {
+    margin-left: 45px;
+    font-size: 18px;
+    word-wrap: break-word; /* Ensures text stays within the box */
+    flex-grow: 1; /* Allows text to take available space */
+    text-align: left; /* Align text to the left for consistency */
+    font-weight: 700;
+    line-height: 1.2; /* Prevents text from becoming too cramped */
+}
+
+.left-box p {
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.left-box .small-text {
+    font-size: 14px;
+    margin-top: 10px;
+    font-weight: normal;
+}
+
+.stop-btn {
+    margin: 2em;
+    padding: 1em;
+    width: 70%;
+    font-family: "Russo One";
+    background-color: #E3250B ;
+    color: #fff;
+    border: none;
+    border-radius: 100px;
+    font-weight: bold;
+    font-size: 30px;
+
+}
+p {
+    font-size: .6em;
+}
+
+
