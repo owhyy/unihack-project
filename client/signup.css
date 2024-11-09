@@ -75,6 +75,10 @@ input[type="text"] {
     height: 3.5em;
 }
 
+input.invalid {
+    border: 1px solid #e53935
+}
+
 select {
     font-weight: 300;
     font-family: "Roboto Condensed";
@@ -120,6 +124,10 @@ select {
 .login-btn:hover {
     background-color: #3b3b3b;
 }
+
+.error-text {
+    color: #e53935;
+  }
 
 p {
     margin: 15px;

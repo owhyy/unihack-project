@@ -22,36 +22,64 @@
         <h2>CREATE YOUR ACCOUNT</h2>
         <p class="description">Create your account. It takes less than a minute. Enter your email, password and car information</p>
         <form @submit.prevent="signup">
-            <input x-model='first_name' type="text" name="first-name" placeholder="FIRST NAME" required>
-            <input x-model='last_name' type="text" name="last-name" placeholder="LAST NAME" required>
-            <input x-model='email' type="email" name="email" placeholder="EMAIL" required>
-            <input x-model='password' type="password" name="password" placeholder="PASSWORD" required>
+            <input x-model='firstName' type="text" name="first-name" placeholder="FIRST NAME" required>
+            <input x-model='lastName' type="text" name="last-name" placeholder="LAST NAME" required>
+            <input @focus="emailError=''" :class="emailError && 'invalid'" x-model='email' type="email" name="email" placeholder="EMAIL" required>
+            <p x-show="emailError" x-text="emailError" class="error-text"></p>	    
+            <input @focus="passwordError=''" :class="passwordError && 'invalid'" x-model='password' type="password" name="password" placeholder="PASSWORD" required>
+	    <p x-show="passwordError" x-text="passwordError" class="error-text"></p>	    
+	    
             <p class="car-info">CAR INFO</p>
-            <input x-model='fuel_economy' type="text" name="fuel-economy" placeholder="FUEL ECONOMY" required>
-            <select x-model='fuel_type' id="type-of-fuel" name="type-of-fuel" required>
+            <input x-model='fuelEconomy' type="text" name="fuel-economy" placeholder="FUEL ECONOMY" required>
+            <select x-model='fuelType' id="type-of-fuel" name="type-of-fuel" required>
                 <option value="" disabled selected>SELECT FUEL TYPE</option>
                 <option value="gasoline">Gasoline</option>
                 <option value="diesel">Diesel</option>
             </select>
+	    <p class="error-text" x-text="errorText" x-show="errorText"></p>
             <button type="submit" class="signup-btn">SIGN UP</button>
-            <!-- <a class="signup-btn">SIGN UP</a> -->
             <p>Already have an account? <a href="login.html" class="register-link">Log in here</a></p>
         </form>
     </div>
     <script>
-        function signupForm() {
-    	  return {
-    	      first_name: '',
-    	      last_name: '',	      
-    	      email: '',
-    	      password: '',
-    	      fuel_economy: '',
-    	      fuel_type: '',
-    	      async signup() {
-    		  await post('users/register', {email: this.email, password: this.password, avg_fuel_consumption: this.fuel_economy, fuel_type: this.fuel_type, first_name: this.first_name, last_name: this.last_name});
-    	      }
-    	  }
-          }
+      function signupForm() {
+	  return {
+              firstName: '',
+              lastName: '',
+              email: '',
+              password: '',
+              fuelEconomy: '',
+              fuelType: '',
+	      errorText: '',
+	      emailError: '',
+	      passwordError: '',
+              async signup() {
+		  const result = await post('users/register', {
+                      email: this.email,
+                      password: this.password,
+                      avg_fuel_consumption: this.fuelEconomy,
+                      fuel_type: this.fuelType,
+                      first_name: this.firstName,
+                      last_name: this.lastName
+		  });
+
+		  if (result.ok) {
+		      window.href.location = "login.html";
+		  } else {
+		      const err = await result.json();
+		      if ('detail' in err) {
+			  this.errorText = err.detail;			  
+		      }
+		      if ('email' in err) {
+			  this.emailError = err.email[0];			  
+		      }
+		      if ('password' in err) {
+			  this.passwordError = err.password[0];			  
+		      }		      		      
+		  }
+              }
+	  }
+      }
     </script>
 </body>
 
