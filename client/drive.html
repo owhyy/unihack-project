@@ -55,6 +55,7 @@
 	  await stopStopwatch();
 	  navigator.geolocation.getCurrentPosition(async (p) => await post('trips/stop', {longitude: p.coords.longitude, latitude: p.coords.latitude}));
       }
+    </script>
 </body>
 </html>
 
