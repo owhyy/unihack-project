@@ -1,13 +1,14 @@
 from datetime import timedelta
 from django.contrib.auth import authenticate, login
 from django.contrib.gis.db.models.functions import Distance
-from django.db.models import Sum
+from django.db.models import F, Sum, Count
 from django.utils import timezone
 from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import serializers, status
 from rest_framework.views import Response
 
+from trip.utils import calculate_emissions
 from trip.service import create_trip, create_user
 from trip.models import CustomUser, Trip
 
@@ -89,29 +90,49 @@ class TripListView(ListAPIView):
 
 
 class TripReportView(ListAPIView):
-    class TripListSerializer(serializers.ModelSerializer):
-        distance_past_week = serializers.SerializerMethodField()
-
-        def get_distance_past_week(self, obj):
-            return obj.distance_past_week.km
-
-        class Meta:
-            model = Trip
-            fields = ["distance_past_week"]
-
-    serializer_class = TripListSerializer
     queryset = Trip.objects.all()
     permission_classes = [IsAuthenticated]
 
-    def get_queryset(self):
-        past_week = timezone.now() - timedelta(days=7)
-        return (
+    def list(self, request, *args, **kwargs):
+        user = self.request.user
+        days_behind = int(request.query_params["days"])
+        now = timezone.now()
+        time_period = now - timedelta(days=days_behind)
+        result = {}
+
+        trips = (
             super()
             .get_queryset()
-            .filter(user=self.request.user, created_at__gte=past_week)
+            .filter(user=user, created_at__gte=time_period)
             .annotate(distance=Distance("origin", "destination"))
-            .annotate(distance_past_week=Sum("distance"))
         )
+        chart = {}
+
+        # FIXME(ion): if days_behind == 1, make a hour-by-hour graph for today's trips
+
+        for day in range(days_behind):
+            past_date = (now - timedelta(days=day)).date()
+            distance_on_past_trips = (
+                trips.filter(created_at__date=past_date)
+                .annotate(distance=Distance("origin", "destination"))
+                .aggregate(total_distance=Sum(F("distance")))
+            )["total_distance"]
+            distance_on_past_trips = (
+                distance_on_past_trips.km if distance_on_past_trips else 0
+            )
+            emissions_on_past_trips = calculate_emissions(
+                user.avg_fuel_consumption, user.fuel_type, distance_on_past_trips
+            )
+            chart[past_date.isoformat()] = emissions_on_past_trips
+
+        total_distance = sum(t.distance.km for t in trips)
+        result["total_trips"] = len(trips)
+        result["total_distance"] = total_distance
+        result["total_emissions"] = calculate_emissions(
+            user.avg_fuel_consumption, user.fuel_type, total_distance
+        )
+        result["trips"] = chart
+        return Response(result)
 
 
 class TripCreateView(CreateAPIView):
