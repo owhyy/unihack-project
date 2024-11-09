@@ -1,4 +1,4 @@
-const api = "http://localhost:8000";
+const api = "https://156a-85-120-207-252.ngrok-free.app";
 
 async function post(endpoint, data) {
     return await fetch(`${api}/${endpoint}`, {
