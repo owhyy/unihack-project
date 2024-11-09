@@ -9,7 +9,7 @@ from rest_framework import serializers, status
 from rest_framework.views import Response
 
 from trip.utils import calculate_emissions
-from trip.service import create_trip, create_user
+from trip.service import start_trip, create_user, stop_trip
 from trip.models import CustomUser, Trip
 
 
@@ -135,17 +135,33 @@ class TripReportView(ListAPIView):
         return Response(result)
 
 
-class TripCreateView(CreateAPIView):
-    class CreateTripSerializer(serializers.ModelSerializer):
+class TripStartView(CreateAPIView):
+    class CoordinateSerializer(serializers.Serializer):
         class Meta:
             model = Trip
-            fields = ["origin", "destination"]
+            fields = ["longitude", "latitude"]
 
-    serializer_class = CreateTripSerializer
+    serializer_class = CoordinateSerializer
     permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
-        create_trip(user=self.request.user, **serializer.validated_data)
+        start_trip(user=self.request.user, **serializer.validated_data)
+
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user)
+
+
+class TripStopView(CreateAPIView):
+    class CoordinateSerializer(serializers.Serializer):
+        class Meta:
+            model = Trip
+            fields = ["longitude", "latitude"]
+
+    serializer_class = CoordinateSerializer
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        stop_trip(user=self.request.user, **serializer.validated_data)
 
     def get_queryset(self):
         return super().get_queryset().filter(user=self.request.user)
