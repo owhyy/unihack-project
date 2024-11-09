@@ -75,10 +75,6 @@ body {
     z-index: -1;
 }
 
-.nav-link:hover {
-    background-color: #ffffff;
-}
-
 .content {
     display: flex;
     justify-content: space-between;
