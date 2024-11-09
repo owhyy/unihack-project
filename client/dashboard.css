@@ -56,13 +56,17 @@ body {
 .nav-link {
     font-size: 18px;
     font-weight: 700;
-    color: #fff;
+    color: black; /* Default color for inactive links */
     text-decoration: none;
     padding: 15px 0;
     width: 100%;
     text-align: center;
     position: relative;
     z-index: 1;
+}
+
+.nav-link.active {
+    color: white; /* Active link will have white text */
 }
 
 .nav-link.active::after {
@@ -76,6 +80,7 @@ body {
     background-color: #930000;
     z-index: -1;
 }
+
 
 
 .content {

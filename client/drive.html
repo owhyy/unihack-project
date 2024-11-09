@@ -4,17 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Go2</title>
-    <link rel="stylesheet" href="drive.js">
+    <link rel="icon" href="images/favicon.png" type="image/png">
+    <link rel="stylesheet" href="drive.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Russo+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="drive.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="top-bar">
         <div class="title-container">
-            <h1>DRIVING MODE</h1>
+            <h1>Current Trip</h1>
             <hr class="underline">
         </div>
     </div>
@@ -29,8 +28,10 @@
     <div class="content">
         <div class="left-box">
             <img src="images/faviconnb.png" alt="Icon" class="left-box-icon">
-            <p class="title-p">0</p>
-            <p class="small-text">g of CO2</p>
+            <div class="text-content">
+                <p class="title-p">0</p>
+                <p class="small-text">g of CO2</p>
+            </div>
         </div>
         <div class="right-boxes">
             <div class="right-box orange">
@@ -47,6 +48,5 @@
     </div>
 
   <script src="drive.js"></script>
-    
 </body>
 </html>
