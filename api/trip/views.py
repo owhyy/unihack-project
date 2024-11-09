@@ -1,4 +1,8 @@
+from datetime import timedelta
 from django.contrib.auth import authenticate, login
+from django.contrib.gis.db.models.functions import Distance
+from django.db.models import Sum
+from django.utils import timezone
 from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import serializers, status
@@ -62,16 +66,52 @@ class UserLoginView(CreateAPIView):
 
 class TripListView(ListAPIView):
     class TripListSerializer(serializers.ModelSerializer):
+        distance = serializers.SerializerMethodField()
+
+        def get_distance(self, obj):
+            return obj.distance.km
+
         class Meta:
             model = Trip
-            fields = ["origin", "destination"]
+            fields = ["origin", "destination", "distance"]
 
     queryset = Trip.objects.all()
     serializer_class = TripListSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        return super().get_queryset().filter(user=self.request.user)
+        return (
+            super()
+            .get_queryset()
+            .filter(user=self.request.user)
+            .annotate(distance=Distance("origin", "destination"))
+        )
+
+
+class TripReportView(ListAPIView):
+    class TripListSerializer(serializers.ModelSerializer):
+        distance_past_week = serializers.SerializerMethodField()
+
+        def get_distance_past_week(self, obj):
+            return obj.distance_past_week.km
+
+        class Meta:
+            model = Trip
+            fields = ["distance_past_week"]
+
+    serializer_class = TripListSerializer
+    queryset = Trip.objects.all()
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        past_week = timezone.now() - timedelta(days=7)
+        return (
+            super()
+            .get_queryset()
+            .filter(user=self.request.user, created_at__gte=past_week)
+            .annotate(distance=Distance("origin", "destination"))
+            .annotate(distance_past_week=Sum("distance"))
+        )
 
 
 class TripCreateView(CreateAPIView):
