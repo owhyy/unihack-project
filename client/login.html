@@ -36,11 +36,14 @@
         password: '',
 	errorText: '',
         async login() {
-		const response = await post('users/login', {email: this.email, password: 
-							    this.password});
-		if (!response.ok) {
-		    this.errorText = (await response.json()).detail;
-		}
+	    const response = await post('users/login', {email: this.email, password: 
+							this.password});
+	    if (response.ok) {
+		window.location.href = "dashboard.html";
+	    }
+	    else {
+		this.errorText = (await response.json()).detail;
+	    }
 	}
     };
   }
