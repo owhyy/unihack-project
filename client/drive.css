@@ -24,8 +24,8 @@ body {
 
 .title-container {
     margin-top: 10px;
-    font-size: 0.8em;
-    font-weight: 700;
+    font-size: 1em;
+    font-weight: 900;
     font-family: "Roboto Condensed";
     text-align: left;
     flex-grow: 1; /* Title takes remaining space */
@@ -38,8 +38,8 @@ body {
 }
 
 .home-icon {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     cursor: pointer;
 }
 
@@ -97,7 +97,7 @@ body {
 .left-box {
     background-color: #930000;
     color: #ffffff;
-    height: 210px;
+    height: 140px;
     padding: 20px;
     box-sizing: border-box;
     border-radius: 20px;
@@ -117,13 +117,13 @@ body {
 }
 
 .left-box p {
-    font-size: 2em;
+    font-size: 1.5em;
     font-weight: 700;
     font-family: "Russo One";
 }
 
 .left-box .small-text {
-    font-size: 10px;
+    font-size: 12px;
     margin-top: 10px;
     font-weight: 300;
     font-family: "Russo one";
@@ -147,17 +147,19 @@ body {
 }
 
 .right-box.orange {
+    padding-top: 30px;
     background-color: #FFA500;
 }
 
 .right-box.grey {
+    padding-top: 30px;
     background-color: #D3D3D3;
     font-family: "Russo One";
 }
 
 .right-box p {
     margin-left: 45px;
-    font-size: 1em;
+    font-size: 0.8em;
     font-weight: 700;
     font-family: "Russo One";
     

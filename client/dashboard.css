@@ -190,11 +190,14 @@ body {
     margin-top: 10px;
     font-weight: normal;
 }
+.chart-container{
+    height:250px;
+}
 
 .diagram-box {
     background-color: hsl(0, 0%, 59%);
     width: 90%;
-    height: 200px;
+    height: 300px;
     margin: 20px auto;
     margin-top: 5px;
     margin-bottom: 10px;
@@ -236,6 +239,32 @@ body {
     color: #000;
     width: 120px;
 }
+
+.savings-box {
+    background-color: #FFA500;
+    width: 90%;
+    height: 200px;
+    margin: 20px auto;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.savings-box p {
+    font-family: 'Russo One', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #000000;
+    text-align: center;
+    margin: 0;
+    padding: 15px;
+}
+
 
 .check-button {
     padding: 10px 20px;
