@@ -187,3 +187,20 @@ body {
     font-weight: normal;
 }
 
+.new-box {
+    background-color: #fff;
+    width: 100%;
+    height: 80%;
+    margin: 20px auto;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #000;
+    font-family: 'Russo One', sans-serif;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+
