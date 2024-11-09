@@ -9,21 +9,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <link rel="stylesheet" href="login.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body>
-    <div class="container">
+    <div class="container" x-data='loginForm()'>
         <div class="logo">
             <img src="images/circle-logo.png" alt="CO₂ Logo">
         </div>
         <h2>LOG INTO YOUR ACCOUNT</h2>
-        <form action="/login" method="post">
-            <input type="email" name="email" placeholder="EMAIL" required>
-            <input type="password" name="password" placeholder="PASSWORD" required>
+        <form @submit.prevent="login">
+            <input x-model='email' type="email" name="email" placeholder="EMAIL" required>
+            <input x-model='password' type="password" name="password" placeholder="PASSWORD" required>
             <button type="submit" class="login-btn" >LOG IN</button>
             <p>Don't have an account? <a href="signup.html" class="register-link">Register here</a></p>
-
-            
         </form>
     </div>
 </body>
+
+<script>
+  const api = "http://localhost:8000";
+  
+  function loginForm() {
+    return {
+        email: '',
+        password: '',
+        async login() {
+            console.log(this.email, this.password);
+
+            try {
+                const response = await fetch(`${api}/users/login`, {
+                    method: "POST",
+                    body: JSON.stringify({ email: this.email, password: this.password }),
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+                if (!response.ok) {
+                    throw new Error(`Response status: ${response.status}`);
+                }
+
+                const json = await response.json();
+                console.log(json);
+            } catch (error) {
+                console.error(error.message);
+            }
+        }
+    };
+} 
+</script>
+
 </html>
