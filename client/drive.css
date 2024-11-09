@@ -14,27 +14,33 @@ body {
 
 /* Top bar */
 .top-bar {
-    display: flex left;
+    display: flex;
+    justify-content: space-between; /* Title on the left, image on the right */
+    align-items: center; /* Vertically align items */
     padding: 20px;
+    width: 100%; /* Full width */
+    flex-wrap: wrap;
 }
 
-/* Title and profile icon */
 .title-container {
-    display: flex left;
-    flex-direction: column;
-    font-size: 60px;
-}
-
-.title-container h1 {
-    font-size: 10em;
+    margin-top: 10px;
+    font-size: 0.8em;
     font-weight: 700;
     font-family: "Roboto Condensed";
+    text-align: left;
+    flex-grow: 1; /* Title takes remaining space */
 }
 
 .underline {
-    width: 10%;
+    width: 30%;
     border: 2px solid #fff;
     margin-top: 5px;
+}
+
+.home-icon {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
 }
 
 /* Stopwatch section */
@@ -43,106 +49,75 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 
 .watch {
-    padding: 50px 250px;
-    width: 50%;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
     flex-direction: column;
     background-color: #DDFFFD;
-    border-radius: 0px;
-    font-size: 5em;
+    border-radius: 20px;
+    font-size: 2em;
+    width: 80%;
 }
 
-/* Display styles */
 #display {
     color: #000;
     font-family: "Rubik", sans-serif;
     font-weight: bold;
 }
 
-/* Navigation */
-.navigation-bar {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 10px;
-    width: 90%;
-    background-color: #ffffff;
-    margin: 0 auto;
-    border-radius: 30px;
-    height: 100%;
-}
-
-.nav-link {
-    font-size: 14px;
-    font-weight: 700;
+/* Stop button */
+.stop-btn {
+    margin-top: 20px;
+    padding: 1em;
+    width: 70%;
+    font-family: "Russo One";
+    background-color: #930000 ;
     color: #fff;
-    text-decoration: none;
-    padding: 15px 0;
-    width: 100%;
-    text-align: center;
-    position: relative;
-    z-index: 1;
-}
-
-.nav-link.active::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 30px;
-    background-color: #930000;
-    z-index: -1;
-}
-
-.nav-link:hover {
-    background-color: #333;
+    border: none;
+    border-radius: 100px;
+    font-weight: bold;
+    font-size: 1.5em;
 }
 
 /* Content section */
 .content {
     display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    width: 90%;
-    margin: 0 auto;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
 }
 
-/* Left Box */
 .left-box {
-    margin-top: 20px;
     background-color: #930000;
     color: #ffffff;
-    width: 48%;
     height: 210px;
-    padding-right: 120px;
+    padding: 20px;
     box-sizing: border-box;
     border-radius: 20px;
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-direction: column;
 }
 
 .left-box-icon {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
 }
 
-/* Text content */
 .text-content {
     text-align: left;
 }
 
 .left-box p {
-    font-size: 40px;
+    font-size: 2em;
     font-weight: 700;
     font-family: "Russo One";
 }
@@ -155,20 +130,17 @@ body {
 
 /* Right Boxes */
 .right-boxes {
-    margin-top: 0px;
     display: flex;
-    flex-direction: column;
-    width: 48%;
-    font-family: 'Russo One', sans-serif;
+    justify-content: space-between;
 }
 
 .right-box {
     border-radius: 20px;
     color: #000;
     height: 98px;
+    width: 48%;
     margin-bottom: 10px;
-    padding-left: 32px;
-    padding-top: 30px;
+    padding: 20px;
     box-sizing: border-box;
     position: relative;
 }
@@ -183,16 +155,12 @@ body {
 
 .right-box p {
     margin-left: 45px;
-    font-size: 18px;
-    word-wrap: break-word;
-    flex-grow: 1;
-    text-align: left;
+    font-size: 1.5em;
     font-weight: 700;
-    line-height: 1.2;
 }
 
 .right-box .small-text {
-    font-size: 10px;
+    font-size: 12px;
 }
 
 /* Icons in right boxes */
@@ -205,100 +173,12 @@ body {
 
 .trip-box-icon {
     padding-left: 20px;
-    width: 60px;
-    height: 40px;
+    width: 50px;
+    height: 30px;
 }
 
 .km-box-icon {
     padding-left: 15px;
-    width: 70px;
-    height: 70px;
-}
-
-/* Stop button */
-.stop-btn {
-    margin: 2em;
-    padding: 1em;
-    width: 70%;
-    font-family: "Russo One";
-    background-color: #930000 ;
-    color: #fff;
-    border: none;
-    border-radius: 100px;
-    font-weight: bold;
-    font-size: 30px;
-}
-
-/* Media Queries for responsiveness */
-
-/* For smaller screens (e.g., mobile devices) */
-@media (max-width: 768px) {
-    .watch {
-        padding: 20px;
-        width: 80%;
-        font-size: 3em;
-    }
-
-    .watch-section {
-        padding: 10px;
-    }
-
-    .content {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .left-box, .right-boxes {
-        width: 80%;
-        margin-bottom: 20px;
-    }
-
-    .stop-btn {
-        width: 90%;
-        font-size: 24px;
-    }
-
-    .left-box p {
-        font-size: 30px;
-    }
-
-    .right-box p {
-        font-size: 16px;
-    }
-
-    .profile-icon {
-        width: 50px;
-        height: 50px;
-    }
-}
-
-/* For even smaller screens (e.g., mobile phones in portrait mode) */
-@media (max-width: 480px) {
-    .top-bar {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .title-container h1 {
-        font-size: 20px;
-    }
-
-    .watch {
-        padding: 15px;
-        width: 100%;
-        font-size: 2.5em;
-    }
-
-    .stop-btn {
-        font-size: 20px;
-    }
-
-    .left-box, .right-boxes {
-        width: 100%;
-    }
-
-    .profile-icon {
-        width: 40px;
-        height: 40px;
-    }
+    width: 50px;
+    height: 50px;
 }
