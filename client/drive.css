@@ -114,6 +114,7 @@ body {
 
 .text-content {
     text-align: left;
+    font-family: "Russo one";
 }
 
 .left-box p {
@@ -123,9 +124,10 @@ body {
 }
 
 .left-box .small-text {
-    font-size: 14px;
+    font-size: 10px;
     margin-top: 10px;
     font-weight: 300;
+    font-family: "Russo one";
 }
 
 /* Right Boxes */
@@ -151,12 +153,16 @@ body {
 
 .right-box.grey {
     background-color: #D3D3D3;
+    font-family: "Russo One";
 }
 
 .right-box p {
     margin-left: 45px;
-    font-size: 1.5em;
+    font-size: 1em;
     font-weight: 700;
+    font-family: "Russo One";
+    
+
 }
 
 .right-box .small-text {
