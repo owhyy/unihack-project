@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="icon" href="images/favicon.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -7,29 +8,51 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <title>SignUp Page</title>
+    <script src="./script.js"></script>
     <link rel="stylesheet" href="signup.css">
 </head>
+
 <body>
-    <div class="container">
+    <div class="container" x-data='signupForm()'>
         <div class="logo">
             <img src="images/circle-logo.png" alt="CO₂ Logo">
         </div>
         <h2>CREATE YOUR ACCOUNT</h2>
         <p class="description">Create your account. It takes less than a minute. Enter your email, password and car information</p>
-        <form action="/login" method="post">
-            <input type="email" name="email" placeholder="EMAIL" required>
-            <input type="password" name="password" placeholder="PASSWORD" required>
+        <form @submit.prevent="signup">
+            <input x-model='first_name' type="text" name="first-name" placeholder="FIRST NAME" required>
+            <input x-model='last_name' type="text" name="last-name" placeholder="LAST NAME" required>
+            <input x-model='email' type="email" name="email" placeholder="EMAIL" required>
+            <input x-model='password' type="password" name="password" placeholder="PASSWORD" required>
             <p class="car-info">CAR INFO</p>
-            <input type="text" name="fuel-economy" placeholder="FUEL ECONOMY" required>
-            <select id="type-of-fuel" name="type-of-fuel" required>
+            <input x-model='fuel_economy' type="text" name="fuel-economy" placeholder="FUEL ECONOMY" required>
+            <select x-model='fuel_type' id="type-of-fuel" name="type-of-fuel" required>
                 <option value="" disabled selected>SELECT FUEL TYPE</option>
-                <option value="petrol">Petrol</option>
+                <option value="gasoline">Gasoline</option>
                 <option value="diesel">Diesel</option>
             </select>
-            <a class="signup-btn">SIGN UP</a>
+            <button type="submit" class="signup-btn">SIGN UP</button>
+            <!-- <a class="signup-btn">SIGN UP</a> -->
             <p>Already have an account? <a href="login.html" class="register-link">Log in here</a></p>
         </form>
     </div>
+    <script>
+        function signupForm() {
+    	  return {
+    	      first_name: '',
+    	      last_name: '',	      
+    	      email: '',
+    	      password: '',
+    	      fuel_economy: '',
+    	      fuel_type: '',
+    	      async signup() {
+    		  await post('users/register', {email: this.email, password: this.password, avg_fuel_consumption: this.fuel_economy, fuel_type: this.fuel_type, first_name: this.first_name, last_name: this.last_name});
+    	      }
+    	  }
+          }
+    </script>
 </body>
+
 </html>
