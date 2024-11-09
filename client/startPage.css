@@ -33,13 +33,12 @@
     justify-content: center;
     align-items: center;
 }
-.drive{
-    font-family: "Roboto";
-    font-weight: 100;
-    font-size: 2em;
-    color: azure;
+.header-text{
+    font-family: "Roboto Condensed";
+    font-weight: 300;
 }
 .btn {
+    margin-top: 3em;
     padding: .5em;
     width: 15em;
     height: 3em;
@@ -50,7 +49,6 @@
     font-family: "Roboto";
     font-weight: bold;
     cursor: pointer;
-    width: 100%;
 }
 .btn:hover {
     background-color: #d32f2f;
@@ -64,29 +62,11 @@
 
 }
 .register-link {
-    font-family: "Roboto";
+    font-family: "Roboto Condensed";
     color:#e53935;
     text-decoration: none; /* Remove default underline */
     border-bottom: 2px solid #e53935; /* Add a custom underline */
     padding-bottom: 2px; /* Optional: adds spacing between text and underline */
   }
 
-.description{
-    font-family: "Roboto Condensed";
-    font-size: 1.5em;
-    text-align: left;
-    width: 60%;
-    weight: 200;
-    margin-bottom: 30px;
-}
-
-.description-box{
-    margin-top: 40px;
-    
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
-}
 
