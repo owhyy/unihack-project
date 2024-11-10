@@ -70,7 +70,7 @@ class TripReportView(ListAPIView):
         trips = (
             super()
             .get_queryset()
-            .filter(user=user)
+            .filter(user=user, created_at__gte=time_period)
             .annotate(distance=Distance("origin", "destination"))
         )
         chart = {}
