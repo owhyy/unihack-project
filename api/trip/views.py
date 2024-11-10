@@ -70,7 +70,7 @@ class TripReportView(ListAPIView):
         trips = (
             super()
             .get_queryset()
-            .filter(user=user, created_at__gte=time_period)
+            .filter(user=user)
             .annotate(distance=Distance("origin", "destination"))
         )
         chart = {}
@@ -94,7 +94,7 @@ class TripReportView(ListAPIView):
 
         total_distance = sum(t.distance.km for t in trips)
         result["total_trips"] = len(trips)
-        result["total_distance"] = total_distance
+        result["total_distance"] = round(total_distance, 2)
         result["total_emissions"] = calculate_emissions(
             user.avg_fuel_consumption, user.fuel_type, total_distance
         )

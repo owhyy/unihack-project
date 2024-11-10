@@ -38,4 +38,4 @@ def calculate_emissions(
         + infrastructure_emissions
     )
 
-    return total_emissions
+    return round(total_emissions, 3)
