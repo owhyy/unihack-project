@@ -57,7 +57,7 @@ class TripListView(ListAPIView):
 
 
 class TripReportView(ListAPIView):
-    queryset = Trip.objects.all()
+    queryset = Trip.objects.filter(destination__isnull=False)
     permission_classes = [IsAuthenticated]
 
     def list(self, request, *args, **kwargs):
@@ -70,9 +70,10 @@ class TripReportView(ListAPIView):
         trips = (
             super()
             .get_queryset()
-            .filter(user=user, created_at__gte=time_period)
+            .filter(user=user, created_at__date__gte=time_period)
             .annotate(distance=Distance("origin", "destination"))
         )
+        # breakpoint()
         chart = {}
 
         # FIXME(ion): if days_behind == 1, make a hour-by-hour graph for today's trips
@@ -104,8 +105,10 @@ class TripReportView(ListAPIView):
 
 class TripStartView(CreateAPIView):
     class CoordinateSerializer(serializers.Serializer):
+        longitude = serializers.FloatField()
+        latitude = serializers.FloatField()
+
         class Meta:
-            model = Trip
             fields = ["longitude", "latitude"]
 
     serializer_class = CoordinateSerializer
@@ -120,8 +123,10 @@ class TripStartView(CreateAPIView):
 
 class TripStopView(CreateAPIView):
     class CoordinateSerializer(serializers.Serializer):
+        longitude = serializers.FloatField()
+        latitude = serializers.FloatField()
+
         class Meta:
-            model = Trip
             fields = ["longitude", "latitude"]
 
     serializer_class = CoordinateSerializer

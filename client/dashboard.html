@@ -23,7 +23,7 @@
     </div>
     
     <div class="navigation-bar">
-        <a @click="days = 1; fetchData()" class="nav-link active">Today</a>
+        <a @click="days = 0; fetchData()" class="nav-link active">Today</a>
         <a @click="days = 7; fetchData()" class="nav-link">Week</a>
         <a @click="days = 30; fetchData()" class="nav-link">Month</a>
     </div>
@@ -56,7 +56,7 @@
     </div>
 
     <div class="start-trip">
-        <a class="start-button" href="drive.html">START NEW DRIVE</a>
+        <a @click="startTimer()" class="start-button">START NEW DRIVE</a>
     </div>
     
     <div class="news-box">
@@ -156,7 +156,7 @@ const ctx = document.getElementById('timeChart').getContext('2d');
   function dashboard() {
       return {
 	  emissions: 0, trips: 0, km: 0,
-	  days: 1,
+	  days: 0,
 	  async fetchData() {
 	      try {
 		  const response = await get(`trips/report?days=${this.days}`);
@@ -170,11 +170,16 @@ const ctx = document.getElementById('timeChart').getContext('2d');
 	      } catch (error) {
 		  console.log(error);
               }
+	  },
+	  async startTimer() {
+	      navigator.geolocation.getCurrentPosition(async (p) => {
+		  const result = await post('trips/start', {longitude: p.coords.longitude, latitude: p.coords.latitude});
+		  if (result.ok) {
+		      window.location.href = "drive.html"		      
+		  }
+
+	      });
 	  }
       }
   }
-  
-
-
-    
 </script>
