@@ -132,8 +132,24 @@ class TripStopView(CreateAPIView):
     serializer_class = CoordinateSerializer
     permission_classes = [IsAuthenticated]
 
+    def create(self, request, *args, **kwargs):
+        user = request.user
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        trip = self.perform_create(serializer)
+        distance = trip.origin.distance(trip.destination)
+        return Response(
+            {
+                "distance": distance,
+                "emissions": calculate_emissions(
+                    user.avg_fuel_consumption, user.fuel_type, distance
+                ),
+            },
+            status=status.HTTP_201_CREATED,
+        )
+
     def perform_create(self, serializer):
-        stop_trip(user=self.request.user, **serializer.validated_data)
+        return stop_trip(user=self.request.user, **serializer.validated_data)
 
     def get_queryset(self):
         return super().get_queryset().filter(user=self.request.user)
