@@ -14,7 +14,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="./script.js"></script>    
 </head>
-<body>
+<body x-data="dashboard()">
     <div class="top-bar">
         <div class="title-container">
             <h1>YOUR DASHBOARD</h1>
@@ -23,12 +23,12 @@
     </div>
     
     <div class="navigation-bar">
-        <a class="nav-link active">Today</a>
-        <a class="nav-link">Week</a>
-        <a class="nav-link">Month</a>
+        <a @click="days = 1; fetchData()" class="nav-link active">Today</a>
+        <a @click="days = 7; fetchData()" class="nav-link">Week</a>
+        <a @click="days = 30; fetchData()" class="nav-link">Month</a>
     </div>
 
-    <div class="content" x-data="dashboard()" x-init="fetchData()">
+    <div class="content" x-init="fetchData()">
         <div class="left-box">
             <img src="images/faviconnb.png" alt="Icon" class="left-box-icon">
             <p x-text="emissions"></p>
@@ -155,10 +155,11 @@ const ctx = document.getElementById('timeChart').getContext('2d');
 
   function dashboard() {
       return {
-	  emissions: 0, trips: 0, km: 0,	  
+	  emissions: 0, trips: 0, km: 0,
+	  days: 1,
 	  async fetchData() {
 	      try {
-		  const response = await get("trips/report?days=1");
+		  const response = await get(`trips/report?days=${this.days}`);
                   if (!response.ok) {
 		      console.log(response);
 		  }
