@@ -11,6 +11,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Russo+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="dashboard.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="./script.js"></script>    
 </head>
 <body>
     <div class="top-bar">
@@ -26,21 +28,21 @@
         <a class="nav-link">Month</a>
     </div>
 
-    <div class="content">
+    <div class="content" x-data="dashboard()" x-init="fetchData()">
         <div class="left-box">
             <img src="images/faviconnb.png" alt="Icon" class="left-box-icon">
-            <p>5422</p>
+            <p x-text="emissions"></p>
             <p class="small-text">g of CO2</p>
         </div>
         <div class="right-boxes">
             <div class="right-box orange">
                 <img src="images/trip.png" alt="Trip Icon" class="trip-box-icon">
-                <p>34</p>
+                <p x-text="trips"></p>
                 <p class="small-text">trips taken</p>
             </div>
             <div class="right-box grey">
                 <img src="images/km.png" alt="KM Icon" class="km-box-icon">
-                <p>412</p>
+                <p x-text="km"></p>
                 <p class="small-text">km driven</p>
             </div>
         </div>
@@ -68,9 +70,6 @@
             <img src="images/co2.png" alt="CO2 Emissions" class="co2-image">
         </div>
     </div>
-
-   
-    
 </body>
 </html>
 
@@ -152,6 +151,26 @@ const config = {
 
 
 const ctx = document.getElementById('timeChart').getContext('2d');
-new Chart(ctx, config);
+  new Chart(ctx, config);
+
+  function dashboard() {
+      return {
+	  emissions: 0, trips: 0, km: 0,	  
+	  async fetchData() {
+	      try {
+		  const response = await get("trips/report?days=1");
+		  console.log(response);
+                  if (!response.ok) throw new Error('Network response was not ok');
+                  const data = await response.json();
+		  console.log(data);
+	      } catch (error) {
+		  console.log(error);
+              }
+	  }
+      }
+  }
+  
+
+
     
 </script>

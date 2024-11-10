@@ -31,21 +31,24 @@
 
 <script>
   function loginForm() {
-    return {
-        email: '',
-        password: '',
-	errorText: '',
-        async login() {
-	    const response = await post('users/login', {email: this.email, password: 
+      return {
+          email: '',
+          password: '',
+	  errorText: '',
+          async login() {
+	      const response = await post('api/token', {email: this.email, password: 
 							this.password});
-	    if (response.ok) {
-		window.location.href = "dashboard.html";
-	    }
-	    else {
-		this.errorText = (await response.json()).detail;
-	    }
-	}
-    };
+	      if (response.ok) {
+		  const tokens = await response.json();
+		  localStorage.setItem("access", tokens.access);
+		  localStorage.setItem("refresh", tokens.refresh);
+		  window.location.href = "dashboard.html";  
+	      }
+	      else {
+		  this.errorText = (await response.json()).detail;
+	      }
+	  }
+      };
   }
 
 </script>

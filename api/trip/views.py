@@ -32,39 +32,6 @@ class UserRegisterView(CreateAPIView):
         create_user(**serializer.validated_data)
 
 
-class UserLoginView(CreateAPIView):
-    class LoginSerializer(serializers.Serializer):
-        email = serializers.EmailField()
-        password = serializers.CharField()
-
-        class Meta:
-            fields = [
-                "email",
-                "password",
-            ]
-
-    serializer_class = LoginSerializer
-
-    def create(self, request):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-
-        user = authenticate(
-            request,
-            username=serializer.validated_data["email"],
-            password=serializer.validated_data["password"],
-        )
-
-        if user is None:
-            return Response(
-                {"detail": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST
-            )
-
-        login(request, user)
-
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-
 class TripListView(ListAPIView):
     class TripListSerializer(serializers.ModelSerializer):
         distance = serializers.SerializerMethodField()
