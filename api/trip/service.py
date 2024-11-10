@@ -37,3 +37,4 @@ def start_trip(user: CustomUser, longitude: float, latitude: float):
 def stop_trip(user: CustomUser, longitude: float, latitude: float):
     point = Point(longitude, latitude)    
     user.trips.filter(stopped_at__isnull=True).update(destination=point, stopped_at=timezone.now())
+    return user.trips.latest("id")
